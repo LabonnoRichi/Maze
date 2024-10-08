@@ -19,19 +19,19 @@
   <script>
     const canvas = document.getElementById('mazeCanvas');
     const ctx = canvas.getContext('2d');
-    const cellSize = 40; //change from 20 (make it variable with each level)
-    const rows = canvas.width / cellSize;
-    const cols = canvas.height / cellSize;
+    /*const*/ let cellSize = 40; //change from 20 (make it variable with each level)
+    /*const*/ let rows = canvas.width / cellSize;
+    /*const*/ let cols = canvas.height / cellSize;
     //let maze = createMaze(rows, cols);
 
-    let maze, holeX, holeY //new 
+    let ballX, ballY, ballVelX, ballVelY, ballSize, maze, holeX, holeY //new 
 
     // Ball variables
-    let ballX = 0.5;
+    /*let ballX = 0.5;
     let ballY = 0.5;
     let ballVelX = 0;
-    let ballVelY = 0;
-    const ballSize = cellSize / 4; // Radius of the ball
+    let ballVelY = 0;*/
+    //const ballSize = cellSize / 4; // Radius of the ball
     const acceleration = 0.005;
     const maxSpeed = 0.25;
     const friction = 0.95;
@@ -41,13 +41,21 @@
     //this functio didnt code for new maze generation
     function resetGame() 
     {
+      rows +=1;
+      cols +=1;
+      cellSize-=2;
+      ballSize=cellSize/4;
+
       maze = createMaze(rows, cols);
       ballX = 0.5;
       ballY = 0.5;
+      ballVelX=0;
+      ballVelY=0;
       // Place the hole at a random, reachable spot in the maze
       placeHole();
       //uncomment later to see if generates random maze
       //edges = shuffle(edges);
+      drawMaze(maze);
     }
 
     
@@ -125,7 +133,7 @@
 
       // Draw the ball
       ctx.fillStyle = 'red';
-      ctx.lineWidth = 1.5;
+      //ctx.lineWidth = 1.5;
       ctx.beginPath();
       ctx.arc(ballX * cellSize, ballY * cellSize, ballSize, 0, Math.PI * 2);
       ctx.fill();
