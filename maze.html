@@ -19,7 +19,7 @@
   <script>
     const canvas = document.getElementById('mazeCanvas');
     const ctx = canvas.getContext('2d');
-    /*const*/ let cellSize = Math.round(cellSizeNonRound); //change from 20 (make it variable with each level)
+    /*const*/ let cellSize = 40; //change from 20 (make it variable with each level)
     let cellSizeNonRound = 40;
     /*const*/ let rows = canvas.width / cellSize;
     /*const*/ let cols = canvas.height / cellSize;
@@ -46,6 +46,7 @@
       cols +=1;*/
       //cellSize-=2;
       cellSizeNonRound*=0.5;
+      cellSize = Math.round(cellSizeNonRound);
       rows = canvas.width / cellSize;
       cols = canvas.height / cellSize;
       ballSize=cellSize/4;
