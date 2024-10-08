@@ -49,11 +49,12 @@
       if (400%Math.round(cellSizeNonRound)==0) {
         cellSize = Math.round(cellSizeNonRound);
       }
-      cellSizeNonRound*=0.7;
-      }
       rows = canvas.width / cellSize;
       cols = canvas.height / cellSize;
       ballSize=cellSize/4;
+      cellSizeNonRound*=0.7;
+      }
+      
 
       maze = createMaze(rows, cols);
       ballX = 0.5;
