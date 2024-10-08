@@ -22,8 +22,9 @@
     const cellSize = 10; //change from 20 (make it variable with each level)
     const rows = canvas.width / cellSize;
     const cols = canvas.height / cellSize;
-    let maze = createMaze(rows, cols);
-    
+    //let maze = createMaze(rows, cols);
+
+    let maze, holeX, holeY //new 
 
     // Ball variables
     let ballX = 0.5;
@@ -34,6 +35,22 @@
     const acceleration = 0.005;
     const maxSpeed = 0.25;
     const friction = 0.95;
+
+    resetGame(); 
+
+    //this functio didnt code for new maze generation
+    function resetGame() 
+    {
+      maze = createMaze(rows, cols);
+      ballX = 0.5;
+      ballY = 0.5;
+      // Place the hole at a random, reachable spot in the maze
+      placeHole();
+      //uncomment later to see if generates random maze
+      //edges = shuffle(edges);
+    }
+
+    
 
     function createMaze(rows, cols) {
       // create maze grid and potential edges
@@ -129,6 +146,20 @@
         }
       }
 
+      ctx.fillStyle = 'blue';
+      ctx.beginPath();
+      ctx.arc(holeX * cellSize + cellSize / 2, holeY * cellSize + cellSize / 2, ballSize, 0, Math.PI * 2);
+      ctx.fill()
+
+    }
+
+  // Place hole at random, reachable location in maze
+  //See how reachable is implemented
+    function placeHole() {
+      do {
+        holeX = Math.floor(Math.random() * rows);
+        holeY = Math.floor(Math.random() * cols);
+      } while (holeX === 0 && holeY === 0); // Avoid placing the hole at the start
     }
 
     // Function to update ball position based on velocity
@@ -181,6 +212,11 @@
       ballX = newBallX;
       ballY = newBallY;
 
+      // Check if the ball has reached the hole
+      if (Math.floor(ballX) === holeX && Math.floor(ballY) === holeY) {
+        resetGame(); // Generate new maze and hole
+      }
+      
       drawMaze(maze);
     }
 
