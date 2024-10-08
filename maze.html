@@ -46,10 +46,10 @@
       cols +=1;*/
       while (cellSize >10 ) {
       //cellSize-=2;
-      cellSizeNonRound*=0.7;
       if (400%Math.round(cellSizeNonRound)==0) {
         cellSize = Math.round(cellSizeNonRound);
       }
+      cellSizeNonRound*=0.7;
       }
       rows = canvas.width / cellSize;
       cols = canvas.height / cellSize;
