@@ -19,7 +19,7 @@
   <script>
     const canvas = document.getElementById('mazeCanvas');
     const ctx = canvas.getContext('2d');
-    const cellSize = 10; //change from 20 (make it variable with each level)
+    const cellSize = 40; //change from 20 (make it variable with each level)
     const rows = canvas.width / cellSize;
     const cols = canvas.height / cellSize;
     //let maze = createMaze(rows, cols);
@@ -216,7 +216,7 @@
       if (Math.floor(ballX) === holeX && Math.floor(ballY) === holeY) {
         resetGame(); // Generate new maze and hole
       }
-      
+
       drawMaze(maze);
     }
 
