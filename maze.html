@@ -44,9 +44,13 @@
     {
       /*rows +=1;
       cols +=1;*/
-      cellSize-=4;
-      //cellSizeNonRound*=0.8;
-      cellSize = Math.round(cellSizeNonRound);
+      while (cellSize >10 ) {
+      //cellSize-=2;
+      cellSizeNonRound*=0.7;
+      if (400%Math.round(cellSizeNonRound)==0) {
+        cellSize = Math.round(cellSizeNonRound);
+      }
+      }
       rows = canvas.width / cellSize;
       cols = canvas.height / cellSize;
       ballSize=cellSize/4;
