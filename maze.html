@@ -24,7 +24,7 @@
     /*const*/ let cols = canvas.height / cellSize;
     //let maze = createMaze(rows, cols);
 
-    let ballX, ballY, ballVelX, ballVelY, ballSize, maze, holeX, holeY //new 
+    let ballX, ballY, ballVelX, ballVelY, ballSize, maze, holeX, holeY; //new 
 
     // Ball variables
     /*let ballX = 0.5;
@@ -41,9 +41,12 @@
     //this functio didnt code for new maze generation
     function resetGame() 
     {
-      rows +=1;
-      cols +=1;
-      cellSize-=2;
+      /*rows +=1;
+      cols +=1;*/
+      //cellSize-=2;
+      cellSize*=0.98;
+      rows = canvas.width / cellSize;
+      cols = canvas.height / cellSize;
       ballSize=cellSize/4;
 
       maze = createMaze(rows, cols);
