@@ -21,6 +21,13 @@
     #level, #timer {
       font-size: 20px;
     }
+
+    #gameOverMessage {
+    text-align: center;
+    font-size: 24px;
+    color: red;
+    margin-top: 50px;
+  }
   </style>
 </head>
 <body>
@@ -92,16 +99,16 @@
     function handleGameOver() {
         clearInterval(timerInterval);
         isGameOver = true;
-        clearInterval(timerInterval); // Stop the timer
+        /*clearInterval(timerInterval); // Stop the timer
         ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
         ctx.fillStyle = 'black';
         ctx.font = '40px Arial';
-        ctx.fillText('Game Over', canvas.width / 2 - 100, canvas.height / 2);
+        ctx.fillText('Game Over', canvas.width / 2 - 100, canvas.height / 2);*/
         
-       /* canvas.style.display = 'none'; 
+       canvas.style.display = 'none'; 
   const gameOverMessage = document.createElement('div');
   gameOverMessage.innerHTML = `<h1>Game Over</h1><p>Final Level: ${level}</p>`;
-  document.body.appendChild(gameOverMessage);*/
+  document.body.appendChild(gameOverMessage);
       }
     
 
@@ -276,7 +283,7 @@
       ballY = newBallY;
 
       // Check if the ball has reached the hole
-      if (Math.floor(ballX) === holeX && Math.floor(ballY) === holeY) {
+      if (Math.floor(ballX) === holeX && Math.floor(ballY) === holeY && !isGameOver) {
         level++;
         resetGame(); // Generate new maze and hole
         updateLevelDisplay(); 
