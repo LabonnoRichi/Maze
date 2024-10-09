@@ -34,7 +34,7 @@
 
   <div id="info">
     <div id="level">Level: 1</div>
-    <div id="timer">Time: 15.0</div>
+    <div id="timer">Time: 20.0</div>
   </div>
 
   <canvas id="mazeCanvas" width="360" height="360"></canvas>
@@ -51,7 +51,7 @@
     let rows = canvas.width / cellSize;
     let cols = canvas.height / cellSize;
     let level =1;
-    let timeLeft = 15; // Initial timer of 15 seconds
+    let timeLeft = 20; // Initial timer of 20 seconds(was 15)
     let timerInterval; // Interval reference for timer
     let ballX, ballY, ballVelX, ballVelY, ballSize, maze, holeX, holeY; //new 
     let isGameOver = false;
@@ -339,7 +339,7 @@ canvas.style.display = 'none'; // Hide the canvas initially
 
     function resetTimer() {
       clearInterval(timerInterval); // Clear any existing interval
-      timeLeft = 15; // Reset to 15 seconds
+      timeLeft = 20; // Reset to 20 seconds(was 15 initially)
       timerInterval = setInterval(() => {
         timeLeft -= 0.1; // Decrease time by 0.1 second per frame
         if (timeLeft <= 0) {
