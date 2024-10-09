@@ -53,7 +53,26 @@
     let timerInterval; // Interval reference for timer
     let ballX, ballY, ballVelX, ballVelY, ballSize, maze, holeX, holeY; //new 
     let isGameOver = false;
+    let wakeLock = null;
 
+// Function to request a wake lock
+async function requestWakeLock() {
+  try {
+    wakeLock = await navigator.wakeLock.request('screen');
+    console.log('Wake Lock is active.');
+  } catch (err) {
+    console.error(`${err.name}, ${err.message}`);
+  }
+}
+
+// Function to release the wake lock (optional, in case you want to stop it manually)
+async function releaseWakeLock() {
+  if (wakeLock !== null) {
+    await wakeLock.release();
+    wakeLock = null;
+    console.log('Wake Lock has been released.');
+  }
+}
     // Ball variables
     /*let ballX = 0.5;
     let ballY = 0.5;
@@ -74,6 +93,7 @@ function startGame() {
   document.getElementById('timer').style.display = 'block'; // Show the timer element
   canvas.style.display = 'block'; // Show the canvas
   resetGame(); // Initialize the maze and start the game logic
+  requestWakeLock();
 }
 
 // Create and display the Start Game button
