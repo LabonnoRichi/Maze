@@ -64,6 +64,44 @@
     const maxSpeed = 0.25;
     const friction = 0.95;
 
+    let isGameStarted = false; // Track if the game has started
+
+// Function to start the game
+function startGame() {
+  isGameStarted = true; // Mark that the game has started
+  document.getElementById('startButton').style.display = 'none'; // Hide the start button
+  document.getElementById('level').style.display = 'block'; // Show the level element
+  document.getElementById('timer').style.display = 'block'; // Show the timer element
+  canvas.style.display = 'block'; // Show the canvas
+  resetGame(); // Initialize the maze and start the game logic
+}
+
+// Create and display the Start Game button
+function createStartButton() {
+  const startButton = document.createElement('button');
+  startButton.id = 'startButton';
+  startButton.textContent = 'Start Game';
+  
+  // Style the button (optional)
+  startButton.style.display = 'block';
+  startButton.style.margin = '20px auto';
+  startButton.style.padding = '10px 20px';
+  startButton.style.fontSize = '18px';
+  startButton.style.cursor = 'pointer';
+  
+  // Add click event to start the game
+  startButton.onclick = startGame;
+  document.body.appendChild(startButton); // Append the button to the body
+}
+
+// Call this function at the beginning to create the Start Game button
+createStartButton();
+
+// Hide game elements initially
+document.getElementById('level').style.display = 'none';
+document.getElementById('timer').style.display = 'none';
+canvas.style.display = 'none'; // Hide the canvas initially
+
     resetGame(); 
 
     //this functio didnt code for new maze generation
