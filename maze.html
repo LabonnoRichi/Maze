@@ -25,7 +25,8 @@
     /*const*/ let cols = canvas.height / cellSize;
     //let maze = createMaze(rows, cols);
     let level =1;
-
+    let timeLeft = 15; // Initial timer of 15 seconds
+    let timerInterval; // Interval reference for timer
     let ballX, ballY, ballVelX, ballVelY, ballSize, maze, holeX, holeY; //new 
 
     // Ball variables
@@ -66,6 +67,7 @@
       placeHole();
       //uncomment later to see if generates random maze
       //edges = shuffle(edges);
+      resetTimer();
       drawMaze(maze);
     }
 
@@ -174,7 +176,11 @@
       //level view
       ctx.fillStyle = 'black';
       ctx.font = '20px Arial';
-      ctx.fillText('Level: ' + level, (canvas.width)/2, canvas.height+2);
+      ctx.fillText('Level: ' + level, (canvas.width)*2/3, canvas.height+10);
+
+      //timer view
+      ctx.font = '22px Arial';
+      ctx.fillText('Time left: '+timeLeft.toFixed(1), (canvas.width)*2/3, canvas.height+20);
 
     }
 
@@ -245,6 +251,17 @@
 
       drawMaze(maze);
     }
+
+    function resetTimer() {
+      clearInterval(timerInterval); // Clear any existing interval
+      timeLeft = 15; // Reset to 15 seconds
+      timerInterval = setInterval(() => {
+        timeLeft -= 0.1; // Decrease time by 0.1 second per frame
+        if (timeLeft <= 0) {
+          timeLeft = 0;
+          resetGame(); // Reset the game if time runs out
+        }
+      }, 100);
 
     // Event listener for arrow key presses
     let keysPressed = {};
