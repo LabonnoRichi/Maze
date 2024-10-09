@@ -37,12 +37,15 @@
     <div id="timer">Time: 15.0</div>
   </div>
 
-  <canvas id="mazeCanvas" width="400" height="400"></canvas>
+  <canvas id="mazeCanvas" width="360" height="360"></canvas>
   <script>
     const canvas = document.getElementById('mazeCanvas');
     const ctx = canvas.getContext('2d');
     const levelElement = document.getElementById('level');
     const timerElement = document.getElementById('timer');
+    const acceleration = 0.005;
+    const maxSpeed = 0.25;
+    const friction = 0.95;
     let cellSize = 40; 
     let cellSizeNonRound = 40;
     let rows = canvas.width / cellSize;
@@ -53,6 +56,7 @@
     let ballX, ballY, ballVelX, ballVelY, ballSize, maze, holeX, holeY; //new 
     let isGameOver = false;
     let wakeLock = null;
+    let isGameStarted = false; // Track if the game has started
 
 // Function to request a wake lock
 async function requestWakeLock() {
@@ -63,21 +67,6 @@ async function requestWakeLock() {
     console.error(`${err.name}, ${err.message}`);
   }
 }
-
-// Function to release the wake lock (optional, in case you want to stop it manually)
-async function releaseWakeLock() {
-  if (wakeLock !== null) {
-    await wakeLock.release();
-    wakeLock = null;
-    console.log('Wake Lock has been released.');
-  }
-}
-  
-    const acceleration = 0.005;
-    const maxSpeed = 0.25;
-    const friction = 0.95;
-
-    let isGameStarted = false; // Track if the game has started
 
 // Function to start the game
 function startGame() {
@@ -108,7 +97,7 @@ function createStartButton() {
   document.body.appendChild(startButton); // Append the button to the body
 }
 
-// Call this function at the beginning to create the Start Game button
+// function to create the Start Game button
 createStartButton();
 
 // Hide game elements initially
@@ -118,7 +107,6 @@ canvas.style.display = 'none'; // Hide the canvas initially
 
     resetGame(); 
 
-    //this functio didnt code for new maze generation
     function resetGame() 
     {
       if (isGameOver) return; // Don't reset if game is over
@@ -126,13 +114,13 @@ canvas.style.display = 'none'; // Hide the canvas initially
       cols +=1;*/
       if (cellSize >10 ) {
       //cellSize-=2;
-      if (400%Math.round(cellSizeNonRound)==0) {
+      if (360%Math.round(cellSizeNonRound)==0) {
         cellSize = Math.round(cellSizeNonRound);
       }
       rows = canvas.width / cellSize;
       cols = canvas.height / cellSize;
       ballSize=cellSize/4;
-      cellSizeNonRound*=0.98;
+      cellSizeNonRound*=0.90;
       }
 
       maze = createMaze(rows, cols);
@@ -357,7 +345,7 @@ canvas.style.display = 'none'; // Hide the canvas initially
         if (timeLeft <= 0) {
           timeLeft = 0;
           handleGameOver();
-          //resetGame(); // Reset the game if time runs out
+          //resetGame(); 
         }
         updateTimerDisplay();
       }, 100);
