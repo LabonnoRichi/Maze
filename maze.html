@@ -264,10 +264,14 @@
       if (Math.floor(ballX) === holeX && Math.floor(ballY) === holeY) {
         level++;
         resetGame(); // Generate new maze and hole
+        updateLevelDisplay(); 
       }
 
       drawMaze(maze);
     }
+
+    function updateLevelDisplay() {
+      levelElement.textContent = `Level: ${level}`;
 
     function resetTimer() {
       clearInterval(timerInterval); // Clear any existing interval
