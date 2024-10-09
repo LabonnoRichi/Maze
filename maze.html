@@ -43,11 +43,10 @@
     const ctx = canvas.getContext('2d');
     const levelElement = document.getElementById('level');
     const timerElement = document.getElementById('timer');
-    /*const*/ let cellSize = 40; //change from 20 (make it variable with each level)
+    let cellSize = 40; 
     let cellSizeNonRound = 40;
-    /*const*/ let rows = canvas.width / cellSize;
-    /*const*/ let cols = canvas.height / cellSize;
-    //let maze = createMaze(rows, cols);
+    let rows = canvas.width / cellSize;
+    let cols = canvas.height / cellSize;
     let level =1;
     let timeLeft = 15; // Initial timer of 15 seconds
     let timerInterval; // Interval reference for timer
@@ -73,12 +72,7 @@ async function releaseWakeLock() {
     console.log('Wake Lock has been released.');
   }
 }
-    // Ball variables
-    /*let ballX = 0.5;
-    let ballY = 0.5;
-    let ballVelX = 0;
-    let ballVelY = 0;*/
-    //const ballSize = cellSize / 4; // Radius of the ball
+  
     const acceleration = 0.005;
     const maxSpeed = 0.25;
     const friction = 0.95;
@@ -280,17 +274,7 @@ canvas.style.display = 'none'; // Hide the canvas initially
       ctx.fillStyle = 'blue';
       ctx.beginPath();
       ctx.arc(holeX * cellSize + cellSize / 2, holeY * cellSize + cellSize / 2, ballSize, 0, Math.PI * 2);
-      ctx.fill()
-
-      //level view
-      /*ctx.fillStyle = 'black';
-      ctx.font = '20px Arial';
-      ctx.fillText('Level: ' + level, (canvas.width)*2/3, canvas.height+10);
-
-      //timer view
-      ctx.font = '22px Arial';
-      ctx.fillText('Time left: '+timeLeft.toFixed(1), (canvas.width)*2/3, canvas.height+20);
-*/
+      ctx.fill();
     }
 
   // Place hole at random, reachable location in maze
