@@ -34,7 +34,7 @@
 
   <div id="info">
     <div id="level">Level: 1</div>
-    <div id="timer">Time: 20.0</div>
+    <div id="timer">Time: 25.0</div>
   </div>
 
   <canvas id="mazeCanvas" width="360" height="360"></canvas>
@@ -46,12 +46,12 @@
     const acceleration = 0.005;
     const maxSpeed = 0.25;
     const friction = 0.95;
-    let cellSize = 40; 
-    let cellSizeNonRound = 40;
+    let cellSize = 60; 
+    let cellSizeNonRound = 60;
     let rows = canvas.width / cellSize;
     let cols = canvas.height / cellSize;
     let level =1;
-    let timeLeft = 20; // Initial timer of 20 seconds(was 15)
+    let timeLeft = 25; // Initial timer of 25 seconds(was 15)
     let timerInterval; // Interval reference for timer
     let ballX, ballY, ballVelX, ballVelY, ballSize, maze, holeX, holeY; //new 
     let isGameOver = false;
@@ -120,7 +120,7 @@ canvas.style.display = 'none'; // Hide the canvas initially
       rows = canvas.width / cellSize;
       cols = canvas.height / cellSize;
       ballSize=cellSize/4;
-      cellSizeNonRound*=0.90;
+      cellSizeNonRound*=0.95;
       }
 
       maze = createMaze(rows, cols);
@@ -339,7 +339,7 @@ canvas.style.display = 'none'; // Hide the canvas initially
 
     function resetTimer() {
       clearInterval(timerInterval); // Clear any existing interval
-      timeLeft = 20; // Reset to 20 seconds(was 15 initially)
+      timeLeft = 25; // Reset to 25 seconds(was 15 initially)
       timerInterval = setInterval(() => {
         timeLeft -= 0.1; // Decrease time by 0.1 second per frame
         if (timeLeft <= 0) {
