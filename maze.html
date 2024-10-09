@@ -289,7 +289,8 @@
       timerInterval = setInterval(() => {
         timeLeft -= 0.1; // Decrease time by 0.1 second per frame
         if (timeLeft <= 0) {
-          timeLeft = 0;
+          //timeLeft = 0;
+          handleGameOver();
           //resetGame(); // Reset the game if time runs out
         }
         updateTimerDisplay();
