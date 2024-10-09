@@ -11,14 +11,31 @@
     }
     body {
       perspective: 1000px;
+      font-family: Arial, sans-serif;
+    }
+    #info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    #level, #timer {
+      font-size: 20px;
     }
   </style>
 </head>
 <body>
+
+  <div id="info">
+    <div id="level">Level: 1</div>
+    <div id="timer">Time: 15.0</div>
+  </div>
+
   <canvas id="mazeCanvas" width="400" height="400"></canvas>
   <script>
     const canvas = document.getElementById('mazeCanvas');
     const ctx = canvas.getContext('2d');
+    const levelElement = document.getElementById('level');
+    const timerElement = document.getElementById('timer');
     /*const*/ let cellSize = 40; //change from 20 (make it variable with each level)
     let cellSizeNonRound = 40;
     /*const*/ let rows = canvas.width / cellSize;
@@ -174,14 +191,14 @@
       ctx.fill()
 
       //level view
-      ctx.fillStyle = 'black';
+      /*ctx.fillStyle = 'black';
       ctx.font = '20px Arial';
       ctx.fillText('Level: ' + level, (canvas.width)*2/3, canvas.height+10);
 
       //timer view
       ctx.font = '22px Arial';
       ctx.fillText('Time left: '+timeLeft.toFixed(1), (canvas.width)*2/3, canvas.height+20);
-
+*/
     }
 
   // Place hole at random, reachable location in maze
@@ -261,8 +278,14 @@
           timeLeft = 0;
           //resetGame(); // Reset the game if time runs out
         }
+        updateTimerDisplay();
       }, 100);
     }
+
+    function updateTimerDisplay() {
+  timerElement.textContent = `Time: ${timeLeft.toFixed(1)}`; // Display time with one decimal place
+}
+
     // Event listener for arrow key presses
     let keysPressed = {};
     document.addEventListener('keydown', (event) => {
