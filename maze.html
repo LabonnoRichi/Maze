@@ -45,6 +45,7 @@
     let timeLeft = 15; // Initial timer of 15 seconds
     let timerInterval; // Interval reference for timer
     let ballX, ballY, ballVelX, ballVelY, ballSize, maze, holeX, holeY; //new 
+    let isGameOver = false;
 
     // Ball variables
     /*let ballX = 0.5;
@@ -61,6 +62,7 @@
     //this functio didnt code for new maze generation
     function resetGame() 
     {
+      if (isGameOver) return; // Don't reset if game is over
       /*rows +=1;
       cols +=1;*/
       if (cellSize >10 ) {
@@ -74,6 +76,14 @@
       cellSizeNonRound*=0.98;
       }
       
+      function handleGameOver() {
+        isGameOver = true;
+        clearInterval(timerInterval); // Stop the timer
+        ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
+        ctx.fillStyle = 'black';
+        ctx.font = '40px Arial';
+        ctx.fillText('Game Over', canvas.width / 2 - 100, canvas.height / 2);
+      }
 
       maze = createMaze(rows, cols);
       ballX = 0.5;
