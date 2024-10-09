@@ -19,11 +19,12 @@
   <script>
     const canvas = document.getElementById('mazeCanvas');
     const ctx = canvas.getContext('2d');
-    /*const*/ let cellSize = 80; //change from 20 (make it variable with each level)
-    let cellSizeNonRound = 80;
+    /*const*/ let cellSize = 40; //change from 20 (make it variable with each level)
+    let cellSizeNonRound = 40;
     /*const*/ let rows = canvas.width / cellSize;
     /*const*/ let cols = canvas.height / cellSize;
     //let maze = createMaze(rows, cols);
+    let level =1;
 
     let ballX, ballY, ballVelX, ballVelY, ballSize, maze, holeX, holeY; //new 
 
@@ -164,10 +165,16 @@
         }
       }
 
+      //draw hole
       ctx.fillStyle = 'blue';
       ctx.beginPath();
       ctx.arc(holeX * cellSize + cellSize / 2, holeY * cellSize + cellSize / 2, ballSize, 0, Math.PI * 2);
       ctx.fill()
+
+      //level view
+      ctx.fillStyle = 'black';
+      ctx.font = '20px Arial';
+      ctx.fillText('Level: ' + level, 10, 30);
 
     }
 
@@ -232,6 +239,7 @@
 
       // Check if the ball has reached the hole
       if (Math.floor(ballX) === holeX && Math.floor(ballY) === holeY) {
+        level++;
         resetGame(); // Generate new maze and hole
       }
 
