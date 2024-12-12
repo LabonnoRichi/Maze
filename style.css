@@ -12,6 +12,7 @@ canvas {
     display: block;
     justify-content:center;
     /*space-between; */
+    margin:auto;
     margin-bottom: 10px;
     color: white;
   }
