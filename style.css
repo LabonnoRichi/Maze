@@ -9,10 +9,9 @@ canvas {
     background-color: black;
   }
   #info {
-    display: block;
-    justify-content:center;
-    /*space-between; */
-    margin:auto;
+    display: flex;
+   flex-direction: column;
+   align-items: center;
     margin-bottom: 10px;
     color: white;
   }
