@@ -229,6 +229,8 @@ canvas.style.display = 'none'; // Hide the canvas initially
           if (cell.south) ctx.moveTo(startX, startY + cellSize), ctx.lineTo(startX + cellSize, startY + cellSize);
           if (cell.east) ctx.moveTo(startX + cellSize, startY), ctx.lineTo(startX + cellSize, startY + cellSize);
           if (cell.west) ctx.moveTo(startX, startY), ctx.lineTo(startX, startY + cellSize);
+          ctx.lineWidth = 3;
+          ctx.strokeStyle = "white";
           ctx.stroke();
         }
       }
