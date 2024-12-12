@@ -23,3 +23,7 @@ canvas {
   color: red;
   margin-top: 50px;
 }
+
+#info{
+    text-emphasis-color: white;
+}
