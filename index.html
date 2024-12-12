@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maze Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body id="button">
+    <div ontouchstart="">
+        <div class="button">
+          <a href="#" onclick="navigateWithDelay(event, 'https://example.com')">Mobile First</a>
+        </div>
+      </div>
+</body>
+</html>
+
+<script>
+    function navigateWithDelay(event, url) {
+      event.preventDefault(); // Prevent the default link action
+      
+      // Delay navigation to allow the animation to play
+      setTimeout(() => {
+        window.location.href = url; // Redirect to the specified URL
+      }, 300); // Adjust the delay (in milliseconds) to match the animation duration
+    }
+  </script>
