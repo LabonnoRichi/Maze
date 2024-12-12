@@ -9,7 +9,7 @@ canvas {
     background-color: black;
   }
   #info {
-    display: flex;
+    display: block;
     justify-content:center;
     /*space-between; */
     margin-bottom: 10px;
