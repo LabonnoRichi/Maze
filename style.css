@@ -10,7 +10,8 @@ canvas {
   }
   #info {
     display: flex;
-    justify-content: space-between;
+    justify-content:center;
+    /*space-between; */
     margin-bottom: 10px;
     color: white;
   }
