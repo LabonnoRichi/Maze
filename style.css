@@ -8,6 +8,11 @@ canvas {
     font-family: Arial, sans-serif;
     background-color: black;
   }
+
+  #mazecanvas{
+    margin:auto;
+  }
+
   #info {
    display: flex;
     /* display block in maze.html */
