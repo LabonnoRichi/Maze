@@ -322,7 +322,7 @@ async function requestWakeLock() {
       ballY = newBallY;
 
       // Check if the ball has reached the hole
-      if (Math.floor(ballX) === holeX+0.5 && Math.floor(ballY) === holeY+0.5 && !isGameOver) {
+      if (Math.floor(ballX) === holeX && Math.floor(ballY) === holeY && !isGameOver) {
         level++;
         resetGame(); // Generate new maze and hole
         updateLevelDisplay(); 
