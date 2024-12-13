@@ -70,7 +70,7 @@ function startGame() {
   // Add click event to start the game
 
 
-  startButton.onclick = startGame;  // No start button
+  // startButton.onclick = startGame;  // No start button
   
   
   //document.body.appendChild(startButton); // Append the button to the body
@@ -83,6 +83,24 @@ function startGame() {
 //document.getElementById('level').style.display = 'none';
 //document.getElementById('timer').style.display = 'none';
 //canvas.style.display = 'none'; // Hide the canvas initially
+
+function startGameOnLoad() {
+        isGameStarted = true; // Mark the game as started
+        document.getElementById('level').style.display = 'block'; // Show the level element
+        document.getElementById('timer').style.display = 'block'; // Show the timer element
+        canvas.style.display = 'block'; // Show the canvas
+        resetGame(); // Initialize the maze and start the game logic
+        requestWakeLock(); // Keep the screen active
+    }
+
+    // Automatically start the game when the page loads
+    window.onload = () => {
+        startGameOnLoad();
+    };
+
+    // Rest of the game logic remains unchanged...
+    drawMaze(maze);
+    gameLoop();
 
     resetGame(); 
 
