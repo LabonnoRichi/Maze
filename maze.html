@@ -44,15 +44,16 @@ async function requestWakeLock() {
 }
 
 // Function to start the game
-function startGame() {
-  isGameStarted = true; // Mark that the game has started
-  //document.getElementById('startButton').style.display = 'none'; // Hide the start button
-  document.getElementById('level').style.display = 'block'; // Show the level element
-  document.getElementById('timer').style.display = 'block'; // Show the timer element
-  canvas.style.display = 'block'; // Show the canvas
-  resetGame(); // Initialize the maze and start the game logic
-  requestWakeLock();
-}
+// function startGame() {
+//   isGameStarted = true; // Mark that the game has started
+//   //document.getElementById('startButton').style.display = 'none'; // Hide the start button
+//   document.getElementById('level').style.display = 'block'; // Show the level element
+//   document.getElementById('timer').style.display = 'block'; // Show the timer element
+//   canvas.style.display = 'block'; // Show the canvas
+//   resetGame(); // Initialize the maze and start the game logic
+//   resetTimer();
+//   requestWakeLock();
+// }
 
 // Create and display the Start Game button
 //function createStartButton() {
@@ -70,7 +71,8 @@ function startGame() {
   // Add click event to start the game
 
   window.onload = () => {
-        startGame;
+        // startGame;
+        resetGame;
     };
 
 
@@ -117,6 +119,8 @@ function startGame() {
       //edges = shuffle(edges);
       resetTimer();
       drawMaze(maze);
+      resetTimer();
+      requestWakeLock();
     }
 
     function handleGameOver() {
@@ -334,9 +338,9 @@ function startGame() {
       clearInterval(timerInterval); // Clear any existing interval
       timeLeft = 25; // Reset to 25 seconds(was 15 initially)
       timerInterval = setInterval(() => {
-      if(isGameStarted){
+      // if(isGameStarted){
         timeLeft -= 0.1;
-       } // Decrease time by 0.1 second per frame
+      //  } // Decrease time by 0.1 second per frame
         if (timeLeft <= 0) {
           timeLeft = 0;
           handleGameOver();
