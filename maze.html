@@ -46,7 +46,7 @@ async function requestWakeLock() {
 // Function to start the game
 function startGame() {
   isGameStarted = true; // Mark that the game has started
-  document.getElementById('startButton').style.display = 'none'; // Hide the start button
+  //document.getElementById('startButton').style.display = 'none'; // Hide the start button
   document.getElementById('level').style.display = 'block'; // Show the level element
   document.getElementById('timer').style.display = 'block'; // Show the timer element
   canvas.style.display = 'block'; // Show the canvas
@@ -55,7 +55,7 @@ function startGame() {
 }
 
 // Create and display the Start Game button
-function createStartButton() {
+//function createStartButton() {
   // const startButton = document.createElement('button');
   // startButton.id = 'startButton';
   // startButton.textContent = 'Start Game';
@@ -68,17 +68,21 @@ function createStartButton() {
   // startButton.style.cursor = 'pointer';
   
   // Add click event to start the game
-  startButton.onclick = startGame;
-  document.body.appendChild(startButton); // Append the button to the body
-}
+
+
+  startButton.onclick = startGame;  // No start button
+  
+  
+  //document.body.appendChild(startButton); // Append the button to the body
+//}
 
 // function to create the Start Game button
-createStartButton();
+//createStartButton();
 
 // Hide game elements initially
-document.getElementById('level').style.display = 'none';
-document.getElementById('timer').style.display = 'none';
-canvas.style.display = 'none'; // Hide the canvas initially
+//document.getElementById('level').style.display = 'none';
+//document.getElementById('timer').style.display = 'none';
+//canvas.style.display = 'none'; // Hide the canvas initially
 
     resetGame(); 
 
@@ -87,11 +91,11 @@ canvas.style.display = 'none'; // Hide the canvas initially
       if (isGameOver) return; // Don't reset if game is over
       /*rows +=1;
       cols +=1;*/
-      if (cellSize >10 ) {
+      if (cellSize >10 && 360%Math.round(cellSizeNonRound)==0 ) {
       //cellSize-=2;
-      if (360%Math.round(cellSizeNonRound)==0) {
+      // if (360%Math.round(cellSizeNonRound)==0) {
         cellSize = Math.round(cellSizeNonRound);
-      }
+      // }
       rows = canvas.width / cellSize;
       cols = canvas.height / cellSize;
       ballSize=cellSize/4;
@@ -238,8 +242,15 @@ canvas.style.display = 'none'; // Hide the canvas initially
       //draw hole
       ctx.fillStyle = 'blue';
       ctx.beginPath();
-      ctx.arc(holeX * cellSize + cellSize / 2, holeY * cellSize + cellSize / 2, ballSize, 0, Math.PI * 2);
+      // ctx.arc(holeX * cellSize + cellSize / 2, holeY * cellSize + cellSize / 2, ballSize, 0, Math.PI * 2);
+      ctx.fillRect(
+    holeX * cellSize,             // X-coordinate of the top-left corner
+    holeY * cellSize,             // Y-coordinate of the top-left corner
+    cellSize,                     // Width of the square
+    cellSize                      // Height of the square
+);
       ctx.fill();
+      ctx.appendChild
     }
 
   // Place hole at random, reachable location in maze
@@ -248,7 +259,8 @@ canvas.style.display = 'none'; // Hide the canvas initially
       do {
         holeX = Math.floor(Math.random() * rows);
         holeY = Math.floor(Math.random() * cols);
-      } while (holeX === 0 && holeY === 0); // Avoid placing the hole at the start
+      } while (holeX < 1 && holeY < 1); 
+      // while (holeX === 1 && holeY === 1); // Avoid placing the hole at the start
     }
 
     // Function to update ball position based on velocity
